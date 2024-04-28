@@ -4,5 +4,15 @@
     "no-console": "warn",
     "camelcase": "off"
   },
-  "ignorePatterns": ["*.config.js"]
+  "ignorePatterns": ["*.config.js"],
+  "overrides": [
+    {
+      // Test files only
+      "files": [
+        "**/__tests__/**/*.[jt]s?(x)",
+        "**/?(*.)+(spec|test).[jt]s?(x)"
+      ],
+      "extends": ["plugin:testing-library/react"]
+    }
+  ]
 }
