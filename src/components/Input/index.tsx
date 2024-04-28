@@ -10,9 +10,10 @@ import { theme } from '@styles/theme'
 
 type Props = TextInputProps & {
   isLoading?: boolean
+  activityTestId?: string
 }
 
-export function Input({ isLoading = false, ...rest }: Props) {
+export function Input({ isLoading = false, activityTestId, ...rest }: Props) {
   return (
     <View style={styles.container}>
       <TextInput
@@ -21,7 +22,12 @@ export function Input({ isLoading = false, ...rest }: Props) {
         {...rest}
       />
 
-      {isLoading && <ActivityIndicator color={theme.colors.blue_light} />}
+      {isLoading && (
+        <ActivityIndicator
+          testID={activityTestId}
+          color={theme.colors.blue_light}
+        />
+      )}
     </View>
   )
 }
