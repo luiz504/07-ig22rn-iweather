@@ -4,7 +4,7 @@
     "no-console": "warn",
     "camelcase": "off"
   },
-  "ignorePatterns": ["*.config.js"],
+  "ignorePatterns": ["*.js"],
   "overrides": [
     {
       // Test files only

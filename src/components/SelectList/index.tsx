@@ -4,7 +4,7 @@ import { styles } from './styles'
 import { Input } from '@components/Input'
 import { CityProps } from '@services/getCityByNameService'
 
-type Props = {
+export type Props = {
   isLoading?: boolean
   placeholder?: string
   value?: string
@@ -23,12 +23,13 @@ export function SelectList(props: Props) {
         value={props.value}
       />
 
-      <View style={styles.options}>
+      <View style={styles.options} testID="options-list">
         {props.data.map((item) => (
           <TouchableOpacity
             key={item.latitude}
             activeOpacity={0.7}
             onPress={() => props.onPress(item)}
+            testID={`option-item-${item.name}`}
           >
             <Text style={styles.title}>{item.name}</Text>
           </TouchableOpacity>
