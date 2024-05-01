@@ -1,6 +1,15 @@
 import { CityProps } from '@services/getCityByNameService'
-import { getStorageCity, saveStorageCity } from './cityStorage'
-
+import {
+  getStorageCity,
+  removeStorageCity,
+  saveStorageCity,
+} from './cityStorage'
+const newCity: CityProps = {
+  id: '1',
+  name: 'Brasilia',
+  latitude: -15,
+  longitude: -47,
+}
 describe('Storage: CityStorage', () => {
   describe('getStorageCity', () => {
     it('should return null when there is no city stored ', async () => {
@@ -11,13 +20,6 @@ describe('Storage: CityStorage', () => {
 
     it('should return the city stored', async () => {
       // Preparing
-      const newCity: CityProps = {
-        id: '1',
-        name: 'Brasilia',
-        latitude: -15,
-        longitude: -47,
-      }
-
       await saveStorageCity(newCity)
 
       // Act
@@ -25,6 +27,30 @@ describe('Storage: CityStorage', () => {
 
       // Assert
       expect(response).toEqual(newCity)
+    })
+  })
+  describe('saveStorageCity', () => {
+    it('should save the city', async () => {
+      // ACT
+      await saveStorageCity(newCity)
+
+      // Assert
+      const response = await getStorageCity()
+      expect(response).toEqual(newCity)
+    })
+  })
+
+  describe('removeStorageCity', () => {
+    it('should remove the city stored', async () => {
+      // Preparing
+      await saveStorageCity(newCity)
+
+      // ACT
+      await removeStorageCity()
+
+      // Assert
+      const response = await getStorageCity()
+      expect(response).toBeNull()
     })
   })
 })
