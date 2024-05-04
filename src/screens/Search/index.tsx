@@ -37,7 +37,7 @@ export function Search() {
   }, [search])
 
   return (
-    <ScrollView>
+    <ScrollView testID="search-screen">
       <ImageBackground
         source={bg}
         defaultSource={bg}

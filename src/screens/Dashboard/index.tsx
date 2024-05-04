@@ -72,11 +72,11 @@ export function Dashboard() {
   }, [getWeatherDetails])
 
   if (isWeatherLoading || cityIsLoading || !city) {
-    return <Loading />
+    return <Loading testID="dashboard-loading" />
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="dashboard-screen">
       <SelectList
         data={cities}
         value={search}
