@@ -76,7 +76,7 @@ export function Dashboard() {
   }
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="dashboard-screen">
       <SelectList
         data={cities}
         value={search}
