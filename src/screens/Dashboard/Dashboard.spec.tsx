@@ -18,9 +18,11 @@ const city = {
   name: 'California, CA',
 }
 describe('Screen: Dashboard', () => {
+  beforeEach(async () => {
+    await saveStorageCity(city)
+  })
   it('should show city weather', async () => {
     jest.spyOn(api, 'get').mockResolvedValue({ data: mockWeatherAPIResponse })
-    await saveStorageCity(city)
 
     render(<Dashboard />)
 
@@ -28,7 +30,6 @@ describe('Screen: Dashboard', () => {
     expect(cityName).toBeTruthy()
   })
   it('should show another selected city weather', async () => {
-    await saveStorageCity(city)
     jest
       .spyOn(api, 'get')
       .mockResolvedValueOnce({ data: mockWeatherAPIResponse })

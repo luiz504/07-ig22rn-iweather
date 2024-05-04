@@ -1,6 +1,7 @@
 /**@type {import('jest').Config} */
 module.exports = {
   preset: "jest-expo",
+  bail: true,
   setupFilesAfterEnv: ["@testing-library/react-native/extend-expect"],
   setupFiles: [
     "./__tests__/mocks/libs/async-storage.js",
