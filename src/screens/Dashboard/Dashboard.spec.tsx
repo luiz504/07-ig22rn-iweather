@@ -1,8 +1,15 @@
 import { mockWeatherAPIResponse } from '@__tests__/mocks/api/mock-weather-api-response'
-import { render, screen, waitFor } from '@__tests__/utils/customRender'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@__tests__/utils/customRender'
 import { api } from '@services/api'
 import { Dashboard } from '.'
 import { saveStorageCity } from '@libs/asyncStorage/cityStorage'
+import { mockCityAPIResponse } from '@__tests__/mocks/api/mock-city-api-response'
 
 const city = {
   id: '1',
@@ -19,5 +26,33 @@ describe('Screen: Dashboard', () => {
 
     const cityName = await waitFor(() => screen.findByText(/california/i))
     expect(cityName).toBeTruthy()
+  })
+  it('should show another selected city weather', async () => {
+    await saveStorageCity(city)
+    jest
+      .spyOn(api, 'get')
+      .mockResolvedValueOnce({ data: mockWeatherAPIResponse })
+      .mockResolvedValueOnce({ data: mockCityAPIResponse })
+      .mockResolvedValueOnce({ data: mockWeatherAPIResponse })
+
+    render(<Dashboard />)
+
+    await waitForElementToBeRemoved(() =>
+      screen.queryByTestId('dashboard-loading'),
+    )
+
+    const cityName = 'Brasilia'
+
+    const search = screen.getByTestId('select-list-search-input')
+    fireEvent.changeText(search, cityName)
+
+    const optionBtn = await waitFor(() =>
+      screen.findByText(cityName, { exact: false }),
+    )
+
+    fireEvent.press(optionBtn)
+
+    const weatherTodayCity = await screen.findByTestId('weather-today-city')
+    expect(weatherTodayCity.props.children).toContain(cityName)
   })
 })

@@ -29,7 +29,9 @@ export function WeatherToday({ weather, city }: Props) {
   return (
     <ImageBackground style={styles.container} source={bgImg}>
       <View>
-        <Text style={styles.city}>{city}</Text>
+        <Text style={styles.city} testID="weather-today-city">
+          {city}
+        </Text>
 
         <Text style={styles.day}>{today}</Text>
       </View>
