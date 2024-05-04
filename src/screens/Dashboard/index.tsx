@@ -72,7 +72,7 @@ export function Dashboard() {
   }, [getWeatherDetails])
 
   if (isWeatherLoading || cityIsLoading || !city) {
-    return <Loading />
+    return <Loading testID="dashboard-loading" />
   }
 
   return (
