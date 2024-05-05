@@ -26,11 +26,9 @@ describe('Screen: Dashboard', () => {
 
     render(<Dashboard />)
 
-    const cityName = await waitFor(() => screen.findByText(/california/i), {
-      timeout: 10000,
-    })
+    const cityName = await waitFor(() => screen.findByText(/california/i))
     expect(cityName).toBeTruthy()
-  })
+  }, 20000)
   it('should show another selected city weather', async () => {
     jest
       .spyOn(api, 'get')
