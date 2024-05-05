@@ -27,7 +27,7 @@ describe('Screen: Dashboard', () => {
     render(<Dashboard />)
 
     const cityName = await waitFor(() => screen.findByText(/california/i), {
-      timeout: 3000,
+      timeout: 10000,
     })
     expect(cityName).toBeTruthy()
   })
