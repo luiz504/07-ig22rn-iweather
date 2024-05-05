@@ -2,6 +2,7 @@
 module.exports = {
   preset: "jest-expo",
   bail: true,
+  cache: false,
   setupFilesAfterEnv: ["@testing-library/react-native/extend-expect"],
   setupFiles: [
     "./__tests__/mocks/libs/async-storage.js",

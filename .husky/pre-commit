@@ -1,3 +1,4 @@
-npm run test
+npx jest --clearCache
+npm run test:ci
 npm run lint-ts
 npx lint-staged
