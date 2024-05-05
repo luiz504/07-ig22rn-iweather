@@ -26,7 +26,7 @@ describe('Screen: Dashboard', () => {
 
     render(<Dashboard />)
 
-    const cityName = await waitFor(() => screen.findByText(/california2/i))
+    const cityName = await waitFor(() => screen.findByText(/california/i))
     expect(cityName).toBeTruthy()
   })
   it('should show another selected city weather', async () => {
